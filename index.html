@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>For Bae</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<style>
+			body,html{position:relative;width:100vw;height:100vh;margin:0;background:#262626;font-weight:300;font-family:'Helvetica'}h1,h2{font-weight:300}.Title{position:absolute;display:block;width:90%;margin:0 auto;top:9vw;left:0;right:0;text-align:center;color:#E9E9E9;font-size:12vw}.Canvas{position:absolute;display:block;width:95vw;height:95vw;margin:0 auto;top:33vw;left:0;right:0;overflow:hidden;border-radius:100% 100% 0 0}.Background{position:relative;display:block;width:100%;height:100%;bottom:-100vw;background-image:linear-gradient(0, #2c0d62, #151B73, #121864);border-radius:100% 100% 0 0;transition:bottom 3s}.Icon{position:absolute;display:block;margin:0}#Moon{width:42%;left:19%;bottom:-40vw;transition:bottom 1.5s}#Star-1{width:21%;right:27%;bottom:-25vw;transition:bottom 1.5s}#Star-2{width:21%;right:18%;bottom:-25vw;transition:bottom 1.5s}#Comet{width:21%;top:-20vw;right:-20vw;-webkit-transform:rotateY(180deg);transform:rotateY(180deg);transition:top 1.5s, right 1.5s}.Text-Container{position:absolute;display:block;width:95%;margin:0 auto;bottom:12vw;left:0;right:0;color:#E9E9E9;text-align:center;overflow:hidden}.Text{position:relative;display:block;width:95%;margin:0 auto;bottom:-25vw;transition:bottom 2s}@keyframes Wobble{0%{transform:translateY(-2%);-webkit-transform:translateY(-2%)}50%{transform:translateY(2%);-webkit-transform:translateY(2%)}100%{transform:translateY(-2%);-webkit-transform:translateY(-2%)}}@keyframes Comet{0%{top:-19vw;right:-20vw}100%{top:70%;right:150%}}
+			@media only screen and (min-width: 1101px){.Title{top:2vw;font-size:4vw}.Canvas{width:30vw;height:30vw;top:9.5vw}.Text-Container{bottom:2vw}.Text{font-size:3vw}}
+			@media only screen and (min-width: 767px) and (max-width: 1100px){.Title{top:5vw;font-size:7vw}.Canvas{width:40vw;height:40vw;top:18vw}.Text-Container{bottom:5vw}.Text{width:55%;font-size:4vw;line-height:5vw}}
+		</style>
+	</head>
+	<body>
+		<h1 class="Title">For Bae</h1>
+		<div class="Canvas">
+			<div id="Background" class="Background"></div>
+			<IMG id="Comet" class="Icon" src="./Assets/Comet.svg" />
+			<IMG id="Moon" class="Icon" src="./Assets/Moon.svg" />
+			<IMG id="Star-1" class="Icon" src="./Assets/Star.svg" />
+			<IMG id="Star-2" class="Icon" src="./Assets/Star.svg" />
+		</div>
+		<div class="Text-Container">
+			<h1 id="Text" class="Text">I love you more than the moon loves the stars!</h1>
+		</div>
+		<script>
+		const EVENTS = [
+			{time:2, command:() => {document.getElementById('Background').style.bottom = 0;}},
+			{time:4, command:() => {document.getElementById('Moon').style.bottom = '27%'; document.getElementById('Moon').style.animation = 'Wobble 2s infinite'}},
+			{time:5, command:() => {document.getElementById('Star-1').style.bottom = '58%'; document.getElementById('Star-1').style.animation = 'Wobble 2s infinite'}},
+			{time:5.35, command:() => {document.getElementById('Star-2').style.bottom = '26%'; document.getElementById('Star-2').style.animation = 'Wobble 2s infinite'}},
+			{time:8, command:() => {document.getElementById('Text').style.bottom = 0;}},
+			{time:10, command:() => {document.getElementById('Comet').style.animation = 'Comet 4s infinite'}}
+		];
+		window.addEventListener('load', () => {
+			EVENTS.forEach(event => {
+				window.setTimeout(event.command, event.time*1000)
+			});
+		}, false);
+		</script>
+	</body>
+</html>
